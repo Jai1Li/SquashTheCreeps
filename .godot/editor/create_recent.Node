@@ -1,4 +1,9 @@
+AnimationTree
+AnimationPlayer
+AudioStreamPlayer
 Label
+ShaderGlobalsOverride
+ColorRect
 Control
 CollisionShape3D
 Area3D
