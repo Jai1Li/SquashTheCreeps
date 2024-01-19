@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://c644sn4xx3mcf" path="res://art/player.glb" id="1_uc7r5"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_2p4j5"]
+radius = 1.36183
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_7kahh")
