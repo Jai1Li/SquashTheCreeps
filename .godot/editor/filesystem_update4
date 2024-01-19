@@ -4,3 +4,4 @@ res://player.gd
 res://Mob.gd
 res://mob.tscn
 res://main.gd
+res://ScoreLabel.gd

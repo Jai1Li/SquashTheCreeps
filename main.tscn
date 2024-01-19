@@ -1,8 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://bhdo4ksbvehgs"]
+[gd_scene load_steps=12 format=3 uid="uid://bhdo4ksbvehgs"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_iyxea"]
 [ext_resource type="PackedScene" uid="uid://dogjrvte5sgbm" path="res://player.tscn" id="1_neeh0"]
 [ext_resource type="PackedScene" uid="uid://dc1ickoheg8a2" path="res://mob.tscn" id="2_241j3"]
+[ext_resource type="FontFile" uid="uid://dc7ub6yi76ju7" path="res://fonts/Montserrat-Medium.ttf" id="4_fkcd8"]
+[ext_resource type="Script" path="res://ScoreLabel.gd" id="5_x36lp"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mp3m8"]
 size = Vector3(60, 2, 60)
@@ -23,11 +25,16 @@ _data = {
 }
 point_count = 5
 
+[sub_resource type="Theme" id="Theme_laxah"]
+default_font = ExtResource("4_fkcd8")
+default_font_size = 22
+
 [node name="Main" type="Node"]
 script = ExtResource("1_iyxea")
 mob_scene = ExtResource("2_241j3")
 
 [node name="Ground" type="StaticBody3D" parent="."]
+collision_layer = 4
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Ground"]
 shape = SubResource("BoxShape3D_mp3m8")
@@ -78,4 +85,25 @@ transform = Transform3D(0.00900848, -7.07946e-06, -0.999959, -4.54747e-13, 1, -7
 wait_time = 0.5
 autostart = true
 
+[node name="UserInterface" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme = SubResource("Theme_laxah")
+
+[node name="ScoreLabel" type="Label" parent="UserInterface"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -44.0
+offset_right = 44.0
+offset_bottom = 31.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Score: 0"
+script = ExtResource("5_x36lp")
+
+[connection signal="hit" from="Player" to="." method="_on_player_hit"]
 [connection signal="timeout" from="MobTimer" to="." method="_on_mob_timer_timeout"]
